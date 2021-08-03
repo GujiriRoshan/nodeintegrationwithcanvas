@@ -9,7 +9,6 @@ const crypto = require("crypto");
 const carbone = require("carbone");
 var convertapi = require('convertapi')('xAhHvC71xhmbCZXR');
 const app = express();
-const port = process.env.PORT || 6000;
 app.use(cors());
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
@@ -23,7 +22,7 @@ app.set("view engine", "ejs");
 let isAuthenticated = false;
 let isdocumentVisible = false;
 
-var consumerSecretApp ="F3082FEC27083F51AEABE1CD86E45AAABEE3C9E58E51D452D7413E6B4073DC53";
+var consumerSecretApp = process.env.CANVAS_CONSUMER_SECRET;
 
 console.log("consumer secret - " + consumerSecretApp);
 
@@ -187,7 +186,7 @@ app.post("/generateDocumentCanvas", (req, res, next) => {
   });
 });
 
-app.post("/signedRequest", function (req, res) {
+app.post("/", function (req, res) {
   var bodyArray = req.body.signed_request.split(".");
   var consumerSecret = bodyArray[0];
   var encoded_envelope = bodyArray[1];
@@ -245,7 +244,7 @@ app.post("/convert", async (req, res) => {
 //   });
 
 
-
+const port = process.env.port || 7800;
 app.listen(port, () => {
   console.log(`app listening on port ${port}`);
 });
