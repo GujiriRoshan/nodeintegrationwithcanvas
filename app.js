@@ -245,7 +245,6 @@ app.post("/convert", async (req, res) => {
 
 
 // const port = process.env.port || 7800;
-app.listen(process.env.port 
-|| 7800, () => {
-  console.log(`app listening on port ${process.env.port || 7800}`);
+app.listen(process.env.PORT, () => {
+  console.log(`app listening on port ${process.env.PORT}`);
 });
