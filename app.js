@@ -244,7 +244,7 @@ app.post("/convert", async (req, res) => {
 //   });
 
 
-const port = process.env.port;
+const port = process.env.port || 9000;
 app.listen(port, () => {
   console.log(`app listening on port ${port}`);
 });
