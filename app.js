@@ -22,7 +22,7 @@ app.set("view engine", "ejs");
 let isAuthenticated = false;
 let isdocumentVisible = false;
 
-var consumerSecretApp = process.env.CANVAS_CONSUMER_SECRET;
+var consumerSecretApp ="F3082FEC27083F51AEABE1CD86E45AAABEE3C9E58E51D452D7413E6B4073DC53";
 
 console.log("consumer secret - " + consumerSecretApp);
 
@@ -186,7 +186,7 @@ app.post("/generateDocumentCanvas", (req, res, next) => {
   });
 });
 
-app.post("/", function (req, res) {
+app.post("/signedRequest", function (req, res) {
   var bodyArray = req.body.signed_request.split(".");
   var consumerSecret = bodyArray[0];
   var encoded_envelope = bodyArray[1];
@@ -244,7 +244,7 @@ app.post("/convert", async (req, res) => {
 //   });
 
 
-const port = process.env.port || 9000;
+const port = process.env.port || 4500;
 app.listen(port, () => {
   console.log(`app listening on port ${port}`);
 });
