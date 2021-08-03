@@ -1,0 +1,3 @@
+https://www.pdftron.com/blog/nodejs/generate-pdf-convert-docx-to-pdf-with-nodejs/
+
+https://github.com/ConvertAPI/convertapi-node

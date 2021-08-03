@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <h2 class="navbar-brand" style="font-weight: bold;">Document Generator</h2>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="form-inline my-lg-2" method="POST" action="/addtemplate" enctype="multipart/form-data" enctype="application/x-www-form-urlencoded">
+                <input class="form-control mr-sm-2" type="file" name="template" style="width: 230px; margin-left:0px;">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add Template</button>
+      </form>
+      <span><ul class="navbar-nav mr-auto" >
+        <li class="nav-item active" style="margin-left: 8px;">
+        
+          <a class="btn btn-primary" href="/" role="button" >Home</a>
+        
+        </li>
+       
+      </ul></span>
+    </div>
+  </nav>
+  <div class="container">
+    <br>
+    <div class="row">
+      <% if (isAuthenticated) { %>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <form  method="post" action="/generateDocumentCanvas">
+                <div class="col">
+                  <h6>Your temeplate id is <%= templateId %></h6>
+                </div>
+                <div class="col">
+                  Enter the Data:
+                  <button type="submit" class="btn btn-success" style=" margin-left: 217px; margin-top: -51px;">render</button>
+                </div>
+                    
+                <textarea name="data" rows = "20" cols = "60">
+                  <%= data%>
+                
+                </textarea>
+                <br>
+               
+              </form>
+        
+            </div>
+            <% if (isdocumentVisible) { %>
+              <div class="col">
+                <iframe src="<%= fileName %>" width="100%" height="550px"></iframe> 
+              </div> 
+              <%} else { %>
+               
+                <div class="col">
+                  <iframe src="<%= outputFileName %>" width="100%" height="550px"></iframe> 
+                </div> 
+              <% } %>
+  
+        </div>
+        <%} else { %>
+          <div class="col">
+            
+            <div class="jumbotron">
+              <h1 class="display-4"> Canvas App Workinga as Expected, Few Observations </h1>
+              <p class="lead">
+                  <ul>
+                      <li> OAuth setting needed in Connected App for scope but no use of Callback URL.  </li>
+                      <li>  Users must be preapproved for signed request, otherwise OAuth flow would be needed. </li> 
+                  </ul> 
+              </p> 
+
+          </div> 
+          
+          </div>
+        <% } %>
+    </div>
+
+  </div>
+</body>
+</html>
