@@ -9,6 +9,7 @@ const crypto = require("crypto");
 const carbone = require("carbone");
 var convertapi = require('convertapi')('xAhHvC71xhmbCZXR');
 const app = express();
+const port = process.env.PORT || 6000;
 app.use(cors());
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
@@ -244,7 +245,7 @@ app.post("/convert", async (req, res) => {
 //   });
 
 
-const port = process.env.port || 4500;
+
 app.listen(port, () => {
   console.log(`app listening on port ${port}`);
 });
