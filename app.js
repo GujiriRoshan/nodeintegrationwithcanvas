@@ -200,7 +200,7 @@ app.post("/", function (req, res) {
     var envelope = JSON.parse(
       new Buffer.from(encoded_envelope, "base64").toString("ascii")
     );
-    res.render("index", { isAuthenticated });
+    res.render("index", { isAuthenticated:false });
   } else {
     res.send("authentication failed");
   }
