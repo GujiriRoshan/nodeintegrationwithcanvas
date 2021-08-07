@@ -40,17 +40,34 @@ app.use((req, res, next) => {
 });
 
 app.get("/", async (req, res) => {
+  const file_array =[]
   const directory = "templates";
-
-  fs.readdir(directory, (err, files) => {
-    if (err) throw err;
-
+  await fs.readdir(directory,(err,files)=>{
     for (const file of files) {
-      fs.unlink(path.join(directory, file), (err) => {
-        if (err) throw err;
-      });
-    } 
-  });
+      if(file!='11.PNG'){
+        file_array.push({
+          file_name:file
+        })
+      } 
+    }
+    console.log(file_array)
+    file_array.forEach(x=>{
+      fs.unlink(`./templates/${x.file_name}`,(resp)=>{
+        console.log('file deleted')
+      })
+    })
+  })
+
+
+  // await fs.readdir(directory, (err, files) => {
+  //   if (err) throw err;
+
+  //   for (const file of files) {
+  //     fs.unlink(path.join(directory, file), (err) => {
+  //       if (err) throw err;
+  //     });
+  //   } 
+  // });
   res.render("index.ejs", {
     isAuthenticated:false,
     isdocumentVisible
